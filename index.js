@@ -5,6 +5,7 @@
 const fs = require('fs')
 const path = require('path')
 const {F} = require('./F')
+// const del = require('del')
 
 /**
  *
@@ -33,21 +34,31 @@ const byBirthTime = (a, b) => a.stat.birthtimeMs - b.stat.birthtimeMs
 /**
  *
  * @param {F} f
+ * @return {String}
  */
-function unlink (f) {
-  console.log('would remove', f.path)
-  // fs.unlinkSync(f.path)
-}
+const toS = f => f.path
+/**
+ *
+ * @param {Array} ls
+ * @return {String}
+ */
+const files = ls => ls.map(toS).join(', ')
 
 function cleanup (dir) {
   try {
-    fs.readdirSync(dir)
+    const subDirs = fs.readdirSync(dir)
       .map(toFullPath(dir))
       .map(getStat)
       .filter(isDir)
       .sort(byBirthTime)
-      .slice(2)
-      .forEach(unlink)
+
+    const deletable = subDirs.slice(2)
+    const latest = subDirs.slice(0, 2)
+
+    console.log('would keep:', files(latest))
+    console.log('and DELETE:', files(deletable))
+
+    // del.sync(deletable)
   } catch (err) {
     console.log(err)
   }
