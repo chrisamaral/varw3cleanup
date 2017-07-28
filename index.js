@@ -6,6 +6,7 @@ const fs = require('fs')
 const path = require('path')
 const {F} = require('./F')
 const del = require('del')
+const minimist = require('minimist')
 
 /**
  *
@@ -61,5 +62,10 @@ function cleanup (dir) {
   console.log('\n\n')
 }
 
-process.argv.slice(2)
-  .forEach(cleanup)
+const {_: dirs, d} = minimist(process.argv.slice(2))
+
+if (d) {
+  process.chdir(d)
+}
+
+dirs.forEach(cleanup)
