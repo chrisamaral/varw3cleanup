@@ -13,6 +13,10 @@ class F {
      */
     this.stat = fs.lstatSync(path)
   }
+
+  toString () {
+    return this.stat.birthtime.toISOString()
+  }
 }
 
 exports.F = F
