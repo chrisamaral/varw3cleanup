@@ -28,7 +28,7 @@ const isDir = f => f.stat.isDirectory()
  * @param {F} b
  * @return {Number}
  */
-const byBirthTime = (a, b) => b.stat.birthtime - a.stat.birthtimeMs
+const byBirthTime = (a, b) => b.stat.birthtimeMs - a.stat.birthtimeMs
 
 /**
  *
@@ -54,11 +54,4 @@ function cleanup (dir) {
 }
 
 process.argv.slice(2)
-  .forEach(dir => {
-    try {
-      fs.readdirSync(dir)
-        .forEach(cleanup)
-    } catch (err) {
-      console.error(err)
-    }
-  })
+  .forEach(cleanup)
