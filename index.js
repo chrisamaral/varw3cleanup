@@ -1,30 +1,10 @@
+#!/usr/bin/env node
+
 'use strict'
 
 const fs = require('fs')
-const dirs = process.argv.slice(2)
 const path = require('path')
-
-class F {
-  constructor (path) {
-    /**
-     * @type {String}
-     */
-    this.path = path
-    /**
-     * @type {Stats}
-     */
-    this.stat = fs.lstatSync(path)
-  }
-}
-
-dirs.forEach(dir => {
-  try {
-    fs.readdirSync(dir)
-      .forEach(cleanup)
-  } catch (err) {
-    console.error(err)
-  }
-})
+const {F} = require('./F')
 
 /**
  *
@@ -72,3 +52,13 @@ function cleanup (dir) {
     console.log(err)
   }
 }
+
+process.argv.slice(2)
+  .forEach(dir => {
+    try {
+      fs.readdirSync(dir)
+        .forEach(cleanup)
+    } catch (err) {
+      console.error(err)
+    }
+  })
