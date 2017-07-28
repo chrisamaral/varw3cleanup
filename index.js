@@ -5,7 +5,7 @@
 const fs = require('fs')
 const path = require('path')
 const {F} = require('./F')
-// const del = require('del')
+const del = require('del')
 
 /**
  *
@@ -29,16 +29,16 @@ const isDir = f => f.stat.isDirectory()
  * @param {F} f
  * @return {String}
  */
-const toS = f => `\t\t- ${f.path}`
+const toS = f => `\t\t- ${f.path};`
 /**
  *
  * @param {Array} ls
  * @return {String}
  */
-const files = ls => ls.map(toS).join(';\n')
+const files = ls => ls.map(toS).join('\n')
 
 function cleanup (dir) {
-  console.log('* entering ~', dir)
+  console.log('>', dir)
   try {
     const subDirs = fs.readdirSync(dir)
       .map(toFullPath(dir))
@@ -50,10 +50,10 @@ function cleanup (dir) {
     const deletable = subDirs.slice(2)
     const latest = subDirs.slice(0, 2)
 
-    console.log('\twould keep:\n', files(latest))
-    console.log('\tand DELETE:\n', files(deletable))
+    console.log('\twill keep:\n', files(latest))
+    console.log('\tand DELETE:\n', files(deletable) || '\t\t (none)')
 
-    // del.sync(deletable)
+    del.sync(deletable)
   } catch (err) {
     console.log(err)
   }
