@@ -1,0 +1,21 @@
+{
+  "name": "@tetris/varw3cleanup",
+  "version": "0.0.0",
+  "description": "house keeping script",
+  "main": "index.js",
+  "bin": {
+    "varw3cleanup": "./index.js"
+  },
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tetris-solutions/varw3cleanup.git"
+  },
+  "author": "darthcas@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tetris-solutions/varw3cleanup/issues"
+  },
+  "homepage": "https://github.com/tetris-solutions/varw3cleanup#readme"
+}
