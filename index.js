@@ -53,7 +53,7 @@ function cleanup (dir) {
     console.log('\twill keep:\n', files(latest))
     console.log('\tand DELETE:\n', files(deletable) || '\t\t (none)')
 
-    del.sync(deletable.map(String))
+    del.sync(deletable.map(f => f.path))
   } catch (err) {
     console.log(err)
   }
