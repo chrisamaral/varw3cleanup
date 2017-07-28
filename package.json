@@ -1,6 +1,6 @@
 {
   "name": "@tetris/varw3cleanup",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "house keeping script",
   "main": "index.js",
   "bin": {
