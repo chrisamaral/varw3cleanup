@@ -28,14 +28,14 @@ const isDir = f => f.stat.isDirectory()
  * @param {F} b
  * @return {Number}
  */
-const byBirthTime = (a, b) => b.stat.birthtimeMs - a.stat.birthtimeMs
+const byBirthTime = (a, b) => a.stat.birthtimeMs - b.stat.birthtimeMs
 
 /**
  *
  * @param {F} f
  */
 function unlink (f) {
-  console.log('would remove', f)
+  console.log('would remove', f.path)
   // fs.unlinkSync(f.path)
 }
 
